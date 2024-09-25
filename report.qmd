@@ -45,6 +45,9 @@ Over the past 50 years, what are the correlations between the medal count for th
 Over the past 50 years, The United States of America has seemingly run away with the total medal count at the Summer Olympics. Most attribute this to the sheer number of athletes that comprise the United States delegation every four years, others gaze at the government's funding of athletes, and some even ponder if patriotism plays a role in the country's success. To address why the United States finds so much success we asked the question: Over the past 50 years, what are the correlations between the medal count for the Olympics and GDP per Capita, population, cultural emphasis on sports, and government funding? I hope not only to solve the riddle of what makes a country successful but also to possibly predict the medal counts in the coming Olympic games. The significance of our question is that if we can identify which factors directly correlate to better Olympic performances we might also be able to minimize their inputs effectively leveling the playing field for countries trailing in the medal count as the Olympics should be about athletic prowess, not a country's politics. Not only can we level the playing field, but we can also advise countries looking to improve their performance. Finally, Olympic success is been measured by how many gold medals a country wins and if there is a tie how many total medals that country has. What if, based on our findings, this metric of success is not just, we could provide insight into determining how Olympic success should truly be judged. 
 
 
+
+
+
 ### Sources 
 
 #### [Medal table at the Paris 2024 Olympic Summer Games](https://www.statista.com/statistics/1483973/medals-olympic-summer-games-paris-2024/)
