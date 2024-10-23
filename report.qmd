@@ -42,13 +42,9 @@ Over the past 50 years, what are the correlations between the medal count for th
 
 ### Introduction
 
-Over the past 50 years, The United States of America has seemingly run away with the total medal count at the Summer Olympics. Most attribute this to the sheer number of athletes that comprise the United States delegation every four years, others gaze at the government's funding of athletes, and some even ponder if patriotism plays a role in the country's success. To address why the United States finds so much success we asked the question: Over the past 50 years, what are the correlations between the medal count for the Olympics and GDP per Capita, population, cultural emphasis on sports, and government funding? I hope not only to solve the riddle of what makes a country successful but also to possibly predict the medal counts in the coming Olympic games. The significance of our question is that if we can identify which factors directly correlate to better Olympic performances we might also be able to minimize their inputs effectively leveling the playing field for countries trailing in the medal count as the Olympics should be about athletic prowess, not a country's politics. Not only can we level the playing field, but we can also advise countries looking to improve their performance. Finally, Olympic success is been measured by how many gold medals a country wins and if there is a tie how many total medals that country has. What if, based on our findings, this metric of success is not just, we could provide insight into determining how Olympic success should truly be judged. 
+Over the past 50 years, The United States of America has seemingly run away with the total medal count at the Summer Olympics. Most attribute this to the sheer number of athletes that comprise the United States delegation every four years, others gaze at the government's funding of athletes, and some even ponder if patriotism plays a role in the country's success. To address why the United States finds so much success we asked the question: Over the past 50 years, what are the correlations between the medal count for the Olympics and GDP per Capita, population, cultural emphasis on sports, and government funding? I hope not only to solve the riddle of what makes a country successful but also to possibly predict the medal counts in the coming Olympic games. The significance of our question is that if we can identify which factors directly correlate to better Olympic performances we might also be able to minimize their inputs effectively leveling the playing field for countries trailing in the medal count as the Olympics should be about athletic prowess, not a country's politics. Not only can we level the playing field, but we can also advise countries looking to improve their performance. Finally, Olympic success is been measured by how many gold medals a country wins and if there is a tie how many total medals that country has. What if, based on our findings, this metric of success is not just, we could provide insight into determining how Olympic success should truly be judged.
 
-
-
-
-
-### Sources 
+### Sources
 
 #### [Medal table at the Paris 2024 Olympic Summer Games](https://www.statista.com/statistics/1483973/medals-olympic-summer-games-paris-2024/)
 
@@ -56,64 +52,36 @@ This source is from a data and statistics website called Statista. This website 
 
 #### Olympism in Action: Trends and Perspectives
 
-Olympism in Action: Trends and Perspectives is a report published by the International Olympic Committee (IOC). The IOC is a global organization that is a collaboration between many stakeholders for the Olympics. It is a trustworthy source that offers factsheets, annual reports, and public media for analysis. 
+Olympism in Action: Trends and Perspectives is a report published by the International Olympic Committee (IOC). The IOC is a global organization that is a collaboration between many stakeholders for the Olympics. It is a trustworthy source that offers factsheets, annual reports, and public media for analysis.
 
 #### [The Conversation](https://theconversation.com/us/topics/olympic-games-6108)
 
-This website offers a wide variety of articles and journals about the Olympics. It is not trustworthy, as many of the articles are opinion pieces. However, there are many insightful ideas that are discussed and worth thought in answering some questions. This source can be used as inspiration rather than drawing data from it. 
+This website offers a wide variety of articles and journals about the Olympics. It is not trustworthy, as many of the articles are opinion pieces. However, there are many insightful ideas that are discussed and worth thought in answering some questions. This source can be used as inspiration rather than drawing data from it.
 
-### Results 
+### Results
 
 Based on a preliminary look at datasets and preexisting knowledge we predict that GDP per Capita and population will have the strongest correlation with Olympic medal success. Due to the ever-changing nature of GDP per Capita, we think that one way to standardize this metric is by ranking it in terms of most to least. This is because, in times of financial crisis, the GDP per capita might fall yet Olympic success still could rise. This is because while the GDP fell, it did not decrease as much as other countries. There might also be some problems with measuring overall Olympic success purely off medal count because some countries such as the United States and the USSR each boycotted games meaning their medal count would be effectively zero. We plan to use bar charts, box plots as well as correlation matrices to explore our data and get a sense of how it is distributed. After the initial exploration, we will utilize scatterplots to visually see if our data is correlated or not. We might even be able to use linear regression on some of our data if it is normally distributed to generate a predictive model based on our factors of how a country might do at the next Olympics. Our results will directly answer our question which essentially asks: What makes a country so dominant at the Olympics? And is there a true winner of the Olympics?
 
-
 ### Attribution
 
-- Hannah Hodge, Jedidiah Bechtel, Sandy Alksninis, and Aedan Bayhan researched and wrote the research question. 
+-   Hannah Hodge, Jedidiah Bechtel, Sandy Alksninis, and Aedan Bayhan researched and wrote the research question.
 
-- Jedidiah Bechtel wrote the Introduction and Results portion
+-   Jedidiah Bechtel wrote the Introduction and Results portion
 
-- Hannah Hodge wrote the Sources section as well as organized the project files and put the report into R
-
-
-
-
-
+-   Hannah Hodge wrote the Sources section as well as organized the project files and put the report into R
 
 Cool thing
 
 ```{r}
+library(tidyr)
 
 library(tidyverse)
+library(rvest)
 
-url <- "https://en.wikipedia.org/wiki/Wrestling_at_the_Summer_Olympics"
+df <- read_csv(here('data_raw','olympic-medals.csv'))
 
-doping_table <- url %>% 
-                read_html() %>% 
-                html_table()
 
-df <- doping_table[[2]]
 
-df <-df %>%
-        select(-1,-5) %>% 
-        filter(!is.na(Year)) %>% 
-        separate(`Best Nation`, into = c("Best_Nation","num_metals"), sep = "\\(")
-
-df <- df %>% 
-       mutate(num_metals = parse_number(num_metals))
-
-view(df)
 
 
 ```
-
-
-
-
-
-
-
-
-
-
-
