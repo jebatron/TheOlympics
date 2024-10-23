@@ -84,9 +84,25 @@ Cool thing
 
 ```{r}
 
+library(tidyverse)
 
+url <- "https://en.wikipedia.org/wiki/Wrestling_at_the_Summer_Olympics"
 
+doping_table <- url %>% 
+                read_html() %>% 
+                html_table()
 
+df <- doping_table[[2]]
+
+df <-df %>%
+        select(-1,-5) %>% 
+        filter(!is.na(Year)) %>% 
+        separate(`Best Nation`, into = c("Best_Nation","num_metals"), sep = "\\(")
+
+df <- df %>% 
+       mutate(num_metals = parse_number(num_metals))
+
+view(df)
 
 
 ```
