@@ -74,14 +74,58 @@ Cool thing
 
 ```{r}
 library(tidyr)
-
+library(here)
 library(tidyverse)
 library(rvest)
+library(janitor)
+library(dplyr)
+df_GDP <- read_csv(here('data',"GDP.csv"))
 
-df <- read_csv(here('data_raw','olympic-medals.csv'))
+view(df_GDP_long)
+
+df_GDP_long <- df_GDP %>% 
+            pivot_longer(
+                cols = -c(Country,`Country Code`),
+                names_to = "year",
+                values_to = "GDP"
+            ) %>% 
+            filter(year == 2022) %>% 
+            filter(!is.na(GDP)) %>% 
+            mutate(
+                countries = Country
+            ) %>% 
+            select(-Country)
+            
+            
 
 
+df_medals <- read_csv(here('data',"olympics_medals_country_wise.csv"))
 
+view(df_medals)
 
+mega_df <- left_join(df_medals, df_GDP_long, by = "countries") %>%             filter(!is.na(GDP)) %>% 
+            select(-c('ioc_code','Country Code'))
+
+view(mega_df)
+
+colnames(mega_df)
+
+mega_df %>% 
+    mutate(
+        countries = fct_reorder(countries, GDP)
+    ) %>%  
+    arrange(desc(GDP)) %>% 
+    slice(1:10) %>%  
+    ggplot(aes(x = total_gold,
+               y = countries))+
+    geom_col(
+        fill = 'gold',
+        alpha = 0.8)+
+    geom_text(aes(label = total_gold),
+              hjust = -0.2)+
+    scale_x_continuous(expand = expansion(mult = c(0, 0.15))
+    )+
+    theme_classic()
+    
 
 ```
