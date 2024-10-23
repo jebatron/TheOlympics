@@ -81,7 +81,7 @@ library(janitor)
 library(dplyr)
 df_GDP <- read_csv(here('data',"GDP.csv"))
 
-view(df_GDP_long)
+
 
 df_GDP_long <- df_GDP %>% 
             pivot_longer(
@@ -125,7 +125,13 @@ mega_df %>%
               hjust = -0.2)+
     scale_x_continuous(expand = expansion(mult = c(0, 0.15))
     )+
-    theme_classic()
+    theme_classic()+
+    labs(
+        x = "Total Number of Gold Medals Won",
+        y = "Country Ranked by GDP in 2022",
+        title = "Total Number of Gold Medals Won by Coutries"
+    )
+
     
 
 ```
